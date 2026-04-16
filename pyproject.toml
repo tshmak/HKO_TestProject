@@ -1,0 +1,16 @@
+[project]
+name = "hko-forecast"
+version = "0.1.0"
+dependencies = [
+    "fastapi",
+    "uvicorn",
+    "pydantic",
+    "python-dotenv",
+    "certifi",
+]
+
+[project.scripts]
+fetch-forecast = "scripts.fetch_forecast:main"
+
+[tool.uv]
+dev-dependencies = []
