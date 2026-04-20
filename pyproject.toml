@@ -10,10 +10,13 @@ dependencies = [
     "streamlit>=1.56.0",
     "pandas>=3.0.2",
     "altair>=6.0.0",
+    "sqlalchemy[asyncio]",
+    "asyncpg",
+    "psycopg",
 ]
 
 [project.scripts]
 fetch-forecast = "scripts.fetch_forecast:main"
 
 [tool.uv]
-dev-dependencies = []
+package = true

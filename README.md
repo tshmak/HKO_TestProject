@@ -40,7 +40,7 @@ Output is JSON.
 ## Streamlit App
 
 ```bash
-streamlit run streamlit_app.py
+streamlit run scripts/streamlit_app.py
 ```
 
 The app lets you:
@@ -52,7 +52,7 @@ The app lets you:
 ## FastAPI Server
 
 ```bash
-uvicorn app.api:app --host 127.0.0.1 --port 8000 --reload
+uvicorn scripts.api:app --host 127.0.0.1 --port 8000 --reload
 ```
 
 Common options:

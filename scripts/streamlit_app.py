@@ -1,38 +1,34 @@
 import os
-import sqlite3
 from datetime import datetime, timedelta
-
+from sqlalchemy import text
 import streamlit as st
 import pandas as pd
 import altair as alt
-
-DB_PATH = os.getenv("DB_PATH", "hko.db")
+from app.db import get_db
 
 st.set_page_config(page_title="HKO Forecast Explorer", layout="wide")
 st.title("HKO Weather Forecast Explorer")
 
-def get_db():
-    return sqlite3.connect(DB_PATH)
-
 def get_forecast_data(forecast_date_start: str, forecast_date_end: str):
     with get_db() as conn:
-        conn.row_factory = sqlite3.Row
-        rows = conn.execute("""
-            SELECT fetch_date, forecast_date, maxtemp_value, mintemp_value
-            FROM forecasts
-            WHERE forecast_date >= ? AND forecast_date <= ?
-            ORDER BY fetch_date, forecast_date
-        """, (forecast_date_start, forecast_date_end)).fetchall()
-    df = pd.DataFrame([dict(r) for r in rows])
+        result = conn.execute(
+            text("""
+                SELECT fetch_date, forecast_date, maxtemp_value, mintemp_value
+                FROM forecasts
+                WHERE forecast_date >= :start AND forecast_date <= :end
+                ORDER BY fetch_date, forecast_date
+            """),
+            {"start": forecast_date_start, "end": forecast_date_end}
+        )
+        rows = result.fetchall()
+    df = pd.DataFrame([dict(r._mapping) for r in rows])
     df["forecast_date"] = pd.to_datetime(df["forecast_date"], format="%Y%m%d")
     return df
 
 def get_fetch_dates():
     with get_db() as conn:
-        rows = conn.execute("""
-            SELECT DISTINCT fetch_date FROM forecasts ORDER BY fetch_date
-        """).fetchall()
-    return [r[0] for r in rows]
+        result = conn.execute(text("SELECT DISTINCT fetch_date FROM forecasts ORDER BY fetch_date"))
+        return [r[0] for r in result.fetchall()]
 
 col1, col2, col3 = st.columns(3)
 
