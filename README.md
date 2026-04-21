@@ -49,6 +49,12 @@ The app lets you:
 - Show all fetch dates or pick a specific one
 - Each `fetch_date` series is rendered in a different color
 
+To run in Docker: 
+```
+docker build -t hko-forecast .
+docker run -p 8501:8501 hko-forecast
+```
+
 ## FastAPI Server
 
 ```bash
