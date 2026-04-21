@@ -2,6 +2,8 @@
 
 Fetches and stores 9-day weather forecasts from the Hong Kong Observatory API, with a Streamlit UI for interactive visualization.
 
+This app is available on <https://hkopast.streamlit.app/>
+
 ## Installation
 
 ```bash
