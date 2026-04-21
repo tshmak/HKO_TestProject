@@ -1,4 +1,4 @@
-FROM python:3.14-slim
+FROM python:3.11-slim
 
 WORKDIR /app
 
@@ -17,6 +17,7 @@ RUN uv sync --frozen --no-dev
 
 # Create non-root user
 RUN useradd --create-home --shell /bin/bash appuser
+RUN chown -R appuser:appuser /app
 USER appuser
 
 # Expose Streamlit port

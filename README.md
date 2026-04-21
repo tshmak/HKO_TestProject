@@ -51,8 +51,7 @@ The app lets you:
 
 To run in Docker: 
 ```
-docker build -t hko-forecast .
-docker run -p 8501:8501 hko-forecast
+docker build -t hko-forecast . && docker run --env-file .env -p 8501:8501 hko-forecast
 ```
 
 ## FastAPI Server
