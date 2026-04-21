@@ -2,7 +2,7 @@
 
 Fetches and stores 9-day weather forecasts from the Hong Kong Observatory API, with a Streamlit UI for interactive visualization.
 
-This app is available on <https://hkopast.streamlit.app/>
+This app is available on <https://hkopast.streamlit.app/> via [Streamlit community cloud](https://streamlit.io/cloud). The data should update automatically via Github Actions (see [.github/workflows/scheduler.yml](.github/workflows/scheduler.yml)).
 
 ## Installation
 
