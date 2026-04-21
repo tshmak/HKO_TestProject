@@ -12,7 +12,7 @@ dependencies = [
     "altair>=6.0.0",
     "sqlalchemy[asyncio]",
     "asyncpg",
-    "psycopg",
+    "psycopg2-binary>=2.9.12",
 ]
 
 [project.scripts]
